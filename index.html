@@ -23,22 +23,33 @@
     </script>
   </head>
 <body>
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 40px 0; gap: 16px; text-align: center;">
-    
-    <h3>Watch Stream via External Player</h3>
-    <p style="max-width: 500px; color: var(--md-sys-color-on-background); font-size: 14px;">
-        This video uses the MKV container format and Dolby 5.1 surround sound. Click the button below to launch and watch it directly inside VLC.
-    </p>
-
-    <!-- The Magic Protocol Link Button -->
-    <a href="vlc://https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv" style="text-decoration: none;">
-        <md-filled-button style="cursor: pointer;">
-            <md-icon slot="leading-icon">play_arrow</md-icon>
-            Play Stream in VLC
-        </md-filled-button>
-    </a>
-    
+<!-- 1. The Video Player Canvas Element (Place inside your <body>) -->
+<div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
+    <video id="stremio-player" controls autoplay playsinline style="width: 100%; max-width: 800px; background: #000; border-radius: 12px;"></video>
 </div>
+
+<!-- 2. Load the Web Media Engine Core Frameworks -->
+<script src="https://jsdelivr.net"></script>
+<script src="https://fluidplayer.com"></script>
+
+<!-- 3. Execute the Torrentio Stream Playback -->
+<script>
+  const video = document.getElementById('stremio-player');
+  const streamUrl = 'https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv';
+
+  // Attach the source directly to the player framework
+  video.src = streamUrl;
+
+  // Initialize the fluid layout controls to push the stream data through
+  fluidPlayer('stremio-player', {
+    layoutControls: {
+      fillToContainer: true,
+      autoPlay: true,
+      playbackRateEnabled: true
+    }
+  });
+</script>
+
 
 
 
