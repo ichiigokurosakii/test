@@ -23,7 +23,25 @@
     </script>
   </head>
 <body>
-<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/laqim5nsjj.js" async type="module"></script><style>wistia-player[media-id='laqim5nsjj']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/laqim5nsjj/swatch'); display: block; filter: blur(5px); padding-top:150.0%; }</style> <wistia-player media-id="laqim5nsjj" aspect="0.6666666666666666"></wistia-player>
+  <div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
+    <video id="custom-stream" controls autoplay playsinline style="width: 100%; max-width: 800px; background: #000; border-radius: 12px;"></video>
+</div>
+
+<script src="https://jsdelivr.net"></script>
+<script>
+  const video = document.getElementById('custom-stream');
+  // PASTE YOUR FULL EXTENSION LINK HERE
+  const src = 'https://vercel.app';
+
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(src);
+    hls.attachMedia(video);
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = src;
+  }
+</script>
+
   <div style="display: flex; justify-content: center; align-items: center;">
     <a href="MaterialYou.html">Theme</a>
   </div>
