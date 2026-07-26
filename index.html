@@ -23,30 +23,31 @@
     </script>
   </head>
 <body>
-  <!-- 1. The Video Player Canvas Element (Place inside your <body>) -->
+  <!-- 1. The VideoJS CSS Skin Framework (Put inside your <head>) -->
+<link href="https://zencdn.net" rel="stylesheet" />
+
+<!-- 2. The Visual Player Canvas Box (Put inside your <body>) -->
 <div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
-    <video id="stremio-player" controls autoplay playsinline style="width: 100%; max-width: 800px; background: #000; border-radius: 12px;"></video>
+    <video id="stremio-videojs" class="video-js vjs-default-skin" controls autoplay playsinline style="width: 100%; max-width: 800px; height: 450px; border-radius: 12px; overflow:hidden;"></video>
 </div>
 
-<!-- 2. Load the Web Media Engine Core Frameworks -->
-<script src="https://jsdelivr.net"></script>
-<script src="https://fluidplayer.com"></script>
-
-<!-- 3. Execute the Torrentio Stream Playback -->
+<!-- 3. Core Engine Decoders (Place at the bottom of your <body>) -->
+<script src="https://zencdn.net"></script>
 <script>
-  const video = document.getElementById('stremio-player');
-  const streamUrl = 'https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv';
+  // Initialize Video.js with dynamic downmixing parameters
+  const player = videojs('stremio-videojs', {
+    autoplay: true,
+    controls: true,
+    fluid: false,
+    aspectRatio: '16:9'
+  });
 
-  // Attach the source directly to the player framework
-  video.src = streamUrl;
+  const targetLink = 'https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv';
 
-  // Initialize the fluid layout controls to push the stream data through
-  fluidPlayer('stremio-player', {
-    layoutControls: {
-      fillToContainer: true,
-      autoPlay: true,
-      playbackRateEnabled: true
-    }
+  // Force the browser engine to accept the raw container type
+  player.src({
+    src: targetLink,
+    type: 'video/x-matroska' 
   });
 </script>
 
