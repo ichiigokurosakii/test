@@ -23,30 +23,21 @@
     </script>
   </head>
 <body>
- <!-- 2. The Visual Player Canvas Box (Place inside your <body>) -->
-    <div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
-        <video id="stremio-videojs" class="video-js vjs-default-skin" controls autoplay playsinline style="width: 100%; max-width: 800px; height: 450px; border-radius: 12px; overflow:hidden;"></video>
-    </div>
+<!-- 1. Load the specialized WASM Media Decoder Engine Component (Put in <head> or <body>) -->
+<script type="module" src="https://jsdelivr.net"></script>
 
-    <!-- 3. Core Engine Decoders (Place at the very bottom of your <body>) -->
-    <script src="https://zencdn.net"></script>
-    <script>
-      // Initialize Video.js with dynamic downmixing parameters
-      const player = videojs('stremio-videojs', {
-        autoplay: true,
-        controls: true,
-        aspectRatio: '16:9'
-      });
+<!-- 2. The Visual Player Block (Place inside your <body> exactly where you want it) -->
+<div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
+    
+    <!-- This custom tag handles MKV demuxing and multi-channel downmixing automatically -->
+    <movi-player 
+        src="https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv" 
+        controls 
+        autoplay
+        style="width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 12px; overflow: hidden; display: block;">
+    </movi-player>
 
-      // YOUR REAL LINK IS LOADED RIGHT HERE
-      const targetLink = 'https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv';
-
-      // This line now correctly sends your link directly into the playback engine
-      player.src({
-        src: targetLink,
-        type: 'video/x-matroska' 
-      });
-    </script>
+</div>
 
 
 
