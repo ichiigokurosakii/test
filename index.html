@@ -23,24 +23,33 @@
     </script>
   </head>
 <body>
-  <div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
-    <video id="custom-stream" controls autoplay playsinline style="width: 100%; max-width: 800px; background: #000; border-radius: 12px;"></video>
+  <!-- 1. The Video Player Canvas Element (Place inside your <body>) -->
+<div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
+    <video id="stremio-player" controls autoplay playsinline style="width: 100%; max-width: 800px; background: #000; border-radius: 12px;"></video>
 </div>
 
+<!-- 2. Load the Web Media Engine Core Frameworks -->
 <script src="https://jsdelivr.net"></script>
-<script>
-  const video = document.getElementById('custom-stream');
-  // PASTE YOUR FULL EXTENSION LINK HERE
-  const src = 'https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv';
+<script src="https://fluidplayer.com"></script>
 
-  if (Hls.isSupported()) {
-    const hls = new Hls();
-    hls.loadSource(src);
-    hls.attachMedia(video);
-  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = src;
-  }
+<!-- 3. Execute the Torrentio Stream Playback -->
+<script>
+  const video = document.getElementById('stremio-player');
+  const streamUrl = 'https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv';
+
+  // Attach the source directly to the player framework
+  video.src = streamUrl;
+
+  // Initialize the fluid layout controls to push the stream data through
+  fluidPlayer('stremio-player', {
+    layoutControls: {
+      fillToContainer: true,
+      autoPlay: true,
+      playbackRateEnabled: true
+    }
+  });
 </script>
+
 
   <div style="display: flex; justify-content: center; align-items: center;">
     <a href="MaterialYou.html">Theme</a>
