@@ -23,33 +23,31 @@
     </script>
   </head>
 <body>
-  <!-- 1. The VideoJS CSS Skin Framework (Put inside your <head>) -->
-<link href="https://zencdn.net" rel="stylesheet" />
+ <!-- 2. The Visual Player Canvas Box (Place inside your <body>) -->
+    <div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
+        <video id="stremio-videojs" class="video-js vjs-default-skin" controls autoplay playsinline style="width: 100%; max-width: 800px; height: 450px; border-radius: 12px; overflow:hidden;"></video>
+    </div>
 
-<!-- 2. The Visual Player Canvas Box (Put inside your <body>) -->
-<div style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">
-    <video id="stremio-videojs" class="video-js vjs-default-skin" controls autoplay playsinline style="width: 100%; max-width: 800px; height: 450px; border-radius: 12px; overflow:hidden;"></video>
-</div>
+    <!-- 3. Core Engine Decoders (Place at the very bottom of your <body>) -->
+    <script src="https://zencdn.net"></script>
+    <script>
+      // Initialize Video.js with dynamic downmixing parameters
+      const player = videojs('stremio-videojs', {
+        autoplay: true,
+        controls: true,
+        aspectRatio: '16:9'
+      });
 
-<!-- 3. Core Engine Decoders (Place at the bottom of your <body>) -->
-<script src="https://zencdn.net"></script>
-<script>
-  // Initialize Video.js with dynamic downmixing parameters
-  const player = videojs('stremio-videojs', {
-    autoplay: true,
-    controls: true,
-    fluid: false,
-    aspectRatio: '16:9'
-  });
+      // YOUR REAL LINK IS LOADED RIGHT HERE
+      const targetLink = 'https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv';
 
-  const targetLink = 'https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/a5f16e3b5db384d599f818c9da9b092a65d23aea/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv/0/New.Girl.S03E01.All.In.1080p.AMZN.WEB-DL.DDP5.1.H265-SiGMA.mkv';
+      // This line now correctly sends your link directly into the playback engine
+      player.src({
+        src: targetLink,
+        type: 'video/x-matroska' 
+      });
+    </script>
 
-  // Force the browser engine to accept the raw container type
-  player.src({
-    src: targetLink,
-    type: 'video/x-matroska' 
-  });
-</script>
 
 
   <div style="display: flex; justify-content: center; align-items: center;">
