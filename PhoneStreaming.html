@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Live Phone Stream</title>
-    <!-- The CSS Styles control visibility and look -->
+    <title>My Streaming Page</title>
     <style>
         body { 
             font-family: sans-serif; 
@@ -12,65 +11,29 @@
             text-align: center; 
             padding-top: 50px; 
         }
-        .hidden { 
-            display: none !important; 
-        }
-        #status-message { 
-            font-size: 24px; 
-            color: #ff4444; 
-            font-weight: bold; 
-            margin-top: 20px; 
-        }
-        video { 
+        .video-container { 
             width: 80%; 
             max-width: 800px; 
+            margin: 20px auto; 
+        }
+        video { 
+            width: 100%; 
             border: 2px solid #333; 
             border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
     </style>
 </head>
 <body>
 
-    <h1>Streaming Directly From My Phone</h1>
+    <h1>Live Stream Container</h1>
 
-    <!-- 1. The script needs this box to show when your phone is offline -->
-    <div id="status-message" class="hidden">⚠️ Server is offline. My device is currently disconnected.</div>
-
-    <!-- 2. The script needs this box to reveal the video player when live -->
-    <div id="player-wrapper" class="hidden">
-        <video id="videoPlayer" controls>
-            <source src="" type="video/mp4">
+    <!-- The Video Player Display -->
+    <div class="video-container">
+        <video controls autoplay name="media">
+            <source src="https://16116e196bda7e.lhr.life/r.mp4" type="video/mp4">
         </video>
     </div>
-
-    <!-- 3. The JavaScript handles the logic down here -->
-    <script>
-        const VIDEO_FILE_URL = "https://16116e196bda7e.lhr.life/r.mp4"; 
-
-        async function checkMobileServer() {
-            const statusMessage = document.getElementById('status-message');
-            const playerWrapper = document.getElementById('player-wrapper');
-            const videoPlayer = document.getElementById('videoPlayer');
-
-            try {
-                const response = await fetch(VIDEO_FILE_URL, { method: 'HEAD' });
-                
-                if (response.ok) {
-                    videoPlayer.src = VIDEO_FILE_URL;
-                    playerWrapper.classList.remove('hidden');
-                    statusMessage.classList.add('hidden');
-                } else {
-                    throw new Error('File not found');
-                }
-            } catch (error) {
-                statusMessage.classList.remove('hidden');
-                playerWrapper.classList.add('hidden');
-                videoPlayer.src = ""; 
-            }
-        }
-
-        checkMobileServer();
-    </script>
 
 </body>
 </html>
