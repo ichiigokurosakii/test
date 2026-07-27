@@ -1,36 +1,76 @@
-<html>
-  <body>
-    <script>
-    // Paste your exact live file path here
-    const VIDEO_FILE_URL = "https://0c3d33c7a55169.lhr.life/r.mp4"; 
-
-    async function checkMobileServer() {
-        const statusMessage = document.getElementById('status-message');
-        const playerWrapper = document.getElementById('player-wrapper');
-        const videoPlayer = document.getElementById('videoPlayer');
-
-        try {
-            // Checks if your phone server is actively responding
-            const response = await fetch(VIDEO_FILE_URL, { method: 'HEAD' });
-            
-            if (response.ok) {
-                // If live: Mount video file source to layout player
-                videoPlayer.src = VIDEO_FILE_URL;
-                playerWrapper.classList.remove('hidden');
-                statusMessage.classList.add('hidden');
-            } else {
-                throw new Error('File not found');
-            }
-        } catch (error) {
-            // If offline: Fallback to error block element
-            statusMessage.classList.remove('hidden');
-            playerWrapper.classList.add('hidden');
-            videoPlayer.src = ""; 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Phone Stream</title>
+    <!-- The CSS Styles control visibility and look -->
+    <style>
+        body { 
+            font-family: sans-serif; 
+            background: #111; 
+            color: white; 
+            text-align: center; 
+            padding-top: 50px; 
         }
-    }
+        .hidden { 
+            display: none !important; 
+        }
+        #status-message { 
+            font-size: 24px; 
+            color: #ff4444; 
+            font-weight: bold; 
+            margin-top: 20px; 
+        }
+        video { 
+            width: 80%; 
+            max-width: 800px; 
+            border: 2px solid #333; 
+            border-radius: 8px; 
+        }
+    </style>
+</head>
+<body>
 
-    checkMobileServer();
-</script>
+    <h1>Streaming Directly From My Phone</h1>
 
-  </body>
+    <!-- 1. The script needs this box to show when your phone is offline -->
+    <div id="status-message" class="hidden">⚠️ Server is offline. My device is currently disconnected.</div>
+
+    <!-- 2. The script needs this box to reveal the video player when live -->
+    <div id="player-wrapper" class="hidden">
+        <video id="videoPlayer" controls>
+            <source src="" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- 3. The JavaScript handles the logic down here -->
+    <script>
+        const VIDEO_FILE_URL = "https://0c3d33c7a55169.lhr.life/r.mp4"; 
+
+        async function checkMobileServer() {
+            const statusMessage = document.getElementById('status-message');
+            const playerWrapper = document.getElementById('player-wrapper');
+            const videoPlayer = document.getElementById('videoPlayer');
+
+            try {
+                const response = await fetch(VIDEO_FILE_URL, { method: 'HEAD' });
+                
+                if (response.ok) {
+                    videoPlayer.src = VIDEO_FILE_URL;
+                    playerWrapper.classList.remove('hidden');
+                    statusMessage.classList.add('hidden');
+                } else {
+                    throw new Error('File not found');
+                }
+            } catch (error) {
+                statusMessage.classList.remove('hidden');
+                playerWrapper.classList.add('hidden');
+                videoPlayer.src = ""; 
+            }
+        }
+
+        checkMobileServer();
+    </script>
+
+</body>
 </html>
