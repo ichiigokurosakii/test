@@ -1,0 +1,36 @@
+<html>
+  <body>
+    <script>
+    // Paste your exact live file path here
+    const VIDEO_FILE_URL = "https://0c3d33c7a55169.lhr.life/r.mp4"; 
+
+    async function checkMobileServer() {
+        const statusMessage = document.getElementById('status-message');
+        const playerWrapper = document.getElementById('player-wrapper');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        try {
+            // Checks if your phone server is actively responding
+            const response = await fetch(VIDEO_FILE_URL, { method: 'HEAD' });
+            
+            if (response.ok) {
+                // If live: Mount video file source to layout player
+                videoPlayer.src = VIDEO_FILE_URL;
+                playerWrapper.classList.remove('hidden');
+                statusMessage.classList.add('hidden');
+            } else {
+                throw new Error('File not found');
+            }
+        } catch (error) {
+            // If offline: Fallback to error block element
+            statusMessage.classList.remove('hidden');
+            playerWrapper.classList.add('hidden');
+            videoPlayer.src = ""; 
+        }
+    }
+
+    checkMobileServer();
+</script>
+
+  </body>
+</html>
