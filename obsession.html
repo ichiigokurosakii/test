@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>Obsession</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Load Google Fonts and Material Symbols -->
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin>
+<link href="https://googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 24px;
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+  }
+</style>
+
+    <script>
+      (function() {
+    const password = "RS"; // Change this to your chosen password
+    let enteredPassword = sessionStorage.getItem("page_auth");
+
+    while (enteredPassword !== password) {
+        enteredPassword = prompt("Please enter the password to access this page:");
+        if (enteredPassword === null) {
+            // If user clicks cancel, redirect them away
+            window.location.href = "https://google.com"; 
+            break;
+        }
+        if (enteredPassword === password) {
+            sessionStorage.setItem("page_auth", enteredPassword);
+        } else {
+            alert("Incorrect password. Try again.");
+        }
+    }
+})();
+    </script>
+    
+    <!-- Import ALL Material You Web Components at once -->
+    <script type="module">
+      import 'https://esm.run/@material/web/all.js';
+    </script>
+    
+    <style>:root {
+  /* Light Theme Palette */
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #EADDFF;
+  --md-sys-color-background: #FEF7FF;
+  --md-sys-color-on-background: #1D1B20;
+  --md-sys-color-surface: #F3EDF7;
+  --md-sys-color-outline: #79747E;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme Palette */
+    --md-sys-color-primary: #D0BCFF;
+    --md-sys-color-on-primary: #381E72;
+    --md-sys-color-primary-container: #4F378B;
+    --md-sys-color-background: #141218;
+    --md-sys-color-on-background: #E6E1E5;
+    --md-sys-color-surface: #211F26;
+    --md-sys-color-outline: #938F99;
+  }
+}
+</style>
+  </head>
+  
+  <body>
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+      <!-- Protected Iframe Setup -->
+<iframe 
+  src="https://vidsrc.sbs/embed/movie/1339713" 
+  style="width: 100%; height: 500px; border: none;" 
+  allowfullscreen="true"
+  scrolling="no"
+  referrerpolicy="no-referrer"
+  sandbox="allow-scripts allow-same-origin allow-forms">
+</iframe>
+
+    </div>
+  </body>
+</html>
