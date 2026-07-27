@@ -35,5 +35,47 @@
         </video>
     </div>
 
+    <script>
+        // The exact live file url to evaluate
+        const VIDEO_FILE_URL = "https://16116e196bda7e.lhr.life/r.mp4"; 
+
+        async function verifyStreamingServer() {
+            const statusMessage = document.getElementById('status-message');
+            const playerWrapper = document.getElementById('player-wrapper');
+            const videoPlayer = document.getElementById('videoPlayer');
+
+            try {
+                // The IF condition: Ping your link with a short 4-second cutoff time
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+                const response = await fetch(VIDEO_FILE_URL, { 
+                    method: 'HEAD', // Checks connection without loading the heavy video data
+                    signal: controller.signal 
+                });
+
+                clearTimeout(timeoutId);
+
+                if (response.ok) {
+                    // IF SUCCESS: Mount video link source and show player layout
+                    videoPlayer.src = VIDEO_FILE_URL;
+                    playerWrapper.classList.remove('hidden');
+                    statusMessage.classList.add('hidden');
+                } else {
+                    // ELSE IF SERVER REJECTS: Trigger the error condition
+                    throw new Error('Server returned layout error');
+                }
+            } catch (error) {
+                // ELSE / CATCH ERROR: Phone server app or Termux tunnel is closed
+                statusMessage.classList.remove('hidden');
+                playerWrapper.classList.add('hidden');
+                videoPlayer.src = ""; // Wipe source to prevent ghost network background tasks
+            }
+        }
+
+        // Initialize execution routine the moment the page layouts load
+        verifyStreamingServer();
+    </script>
+
 </body>
 </html>
