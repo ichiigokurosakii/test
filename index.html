@@ -142,6 +142,15 @@ header h1{
     font-size:22px;
 }
 }
+.live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #ff3b3b;
+      box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.65);
+      animation: pulse 1.6s infinite;
+    }
+
 </style>
 </head>
 
@@ -174,10 +183,10 @@ header h1{
 <p>Cloud storage and documents.</p>
 </a>
 
-<a href="https://youtube.com" class="card" hidden target="_blank" rel="noopener noreferrer">
-<div class="icon">🎬</div>
-<h2>YouTube</h2>
-<p>Videos and tutorials.</p>
+<a href="https://youtube.com" class="card" target="_blank" rel="noopener noreferrer">
+<div class="icon"><span class="live-dot"></span>⚽</div>
+<h2>Live Football</h2>
+<p>Live Matches and Streams</p>
 </a>
 
 <a href="https://chat.openai.com" class="card" hidden target="_blank" rel="noopener noreferrer">
