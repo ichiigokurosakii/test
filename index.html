@@ -143,13 +143,16 @@ header h1{
 }
 }
 .live-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: #ff3b3b;
-      box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.65);
-      animation: pulse 1.6s infinite;
-    }
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: #ff3b3b;
+    vertical-align: middle;
+    box-shadow: 0 0 0 0 rgba(255,59,59,.7);
+    animation: pulse 1.6s infinite;
+}
 @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.65); }
       70% { box-shadow: 0 0 0 12px rgba(255, 59, 59, 0); }
@@ -200,8 +203,8 @@ header h1{
 <p>Cloud storage and documents.</p>
 </a>
 
-<a href="https://youtube.com" class="card" target="_blank" rel="noopener noreferrer">
-<span class="live-dot"></span><div class="icon">⚽</div>
+<a href="https://rupinderr.vercel.app/Live.html" class="card" target="_blank" rel="noopener noreferrer">
+<div class="icon">⚽</div>
 <h2><span class="live-dot"></span>Live Football</h2>
 <p>Live Matches and Streams</p>
 </a>
