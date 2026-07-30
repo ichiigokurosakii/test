@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baki Hanma</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            background: #111; 
+            color: white; 
+            text-align: center; 
+            padding-top: 50px; 
+        }
+        .video-container { 
+            width: 80%; 
+            max-width: 800px; 
+            margin: 20px auto; 
+        }
+        video { 
+            width: 100%; 
+            border: 2px solid #333; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Baki</h1>
+
+    <!-- The Video Player Display -->
+    <div class="video-container">
+        <video controls autoplay name="media">
+            <source src="https://torrentio.strem.fun/resolve/torbox/8e445f1a-923f-49e4-b1ae-c4f92edb9045/495ffe418634e34ed3099f488dfc1046bd7e12b7/BAKI-DOU.The.Invincible.Samurai.S01E14.Pickle.1080p.NF.WEB-DL.DUAL.DDP5.1.H.264.MSubs-ToonsHub.mkv/3/BAKI-DOU.The.Invincible.Samurai.S01E14.Pickle.1080p.NF.WEB-DL.DUAL.DDP5.1.H.264.MSubs-ToonsHub.mkv">
+        </video>
+    </div>
+
+</body>
+</html>
+
+<!-- commands for phone termux:
+pkg install openssh -y
+ssh -R 80:localhost:8080 nokey@localhost.run
+-->
