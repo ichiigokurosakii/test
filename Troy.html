@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      (function() {
+    const password = "RS"; // Change this to your chosen password
+    let enteredPassword = sessionStorage.getItem("page_auth");
+
+    while (enteredPassword !== password) {
+        enteredPassword = prompt("Please enter the password to access this page:");
+        if (enteredPassword === null) {
+            // If user clicks cancel, redirect them away
+            window.location.href = "https://google.com"; 
+            break;
+        }
+        if (enteredPassword === password) {
+            sessionStorage.setItem("page_auth", enteredPassword);
+        } else {
+            alert("Incorrect password. Try again.");
+        }
+    }
+})();
+    </script>
+  </head>
+<body>
+<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/1jc3r11fhr.js" async type="module"></script><style>wistia-player[media-id='1jc3r11fhr']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/1jc3r11fhr/swatch'); display: block; filter: blur(5px); padding-top:41.25%; }</style> <wistia-player media-id="1jc3r11fhr" aspect="2.4242424242424243"></wistia-player>
+</body>
+</html>
