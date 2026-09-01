@@ -1,217 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real Madrid vs Leganes</title>
   <style>
-    :root {
-      --bg1: #050816;
-      --bg2: #0b1225;
-      --panel: rgba(10, 16, 35, 0.72);
-      --panel-border: rgba(255, 255, 255, 0.12);
-      --text: #f5f7ff;
-      --muted: rgba(245, 247, 255, 0.7);
-      --accent: #7c3aed;
-      --accent2: #22d3ee;
-      --glow: rgba(124, 58, 237, 0.35);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     html, body {
       margin: 0;
-      min-height: 100%;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(124, 58, 237, 0.28), transparent 32%),
-        radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 28%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 95%);
-    }
-
-    .page {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-
-    .shell {
-      width: min(1200px, 100%);
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      border-radius: 28px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255,255,255,0.04) inset;
-      backdrop-filter: blur(18px);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .shell::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(124,58,237,0.12), transparent 30%, rgba(34,211,238,0.08));
-      pointer-events: none;
-    }
-
-    .header {
-      position: relative;
-      padding: 28px 28px 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      z-index: 1;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: 0.02em;
-    }
-
-    .live-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: #ff3b3b;
-      box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.65);
-      animation: pulse 1.6s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.65); }
-      70% { box-shadow: 0 0 0 12px rgba(255, 59, 59, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0); }
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 54px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      text-wrap: balance;
-    }
-
-    .sub {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 15px;
-      max-width: 72ch;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      padding: 22px;
-    }
-
-    .stream-card {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(0,0,0,0.22);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-    }
-
-    .frame-wrap {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .frame-wrap iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+      padding: 0;
       width: 100%;
       height: 100%;
-      border: 0;
+      overflow: hidden;
     }
 
-    .footer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 18px 22px 24px;
-      color: var(--muted);
-      font-size: 13px;
-      z-index: 1;
-      position: relative;
-    }
-
-    .footer strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    @media (max-width: 640px) {
-      .page { padding: 12px; }
-      .header, .content, .footer { padding-left: 16px; padding-right: 16px; }
-      .header { padding-top: 20px; }
-      .shell { border-radius: 20px; }
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <main class="shell">
-      <section class="header">
-        <div class="badge-row">
-          <div class="badge"><span class="live-dot"></span> Live Stream</div>
-          <div class="badge">Real Madrid</div>
-          <div class="badge">Friendlies</div>
-        </div>
-        <h1>Real Madrid vs Leganes</h1>
-        <p class="sub">A clean, streaming-style match page with a cinematic glassmorphism layout and a full-width embedded player.</p>
-      </section>
 
-      <section class="content">
-        <div class="stream-card">
-          <div class="frame-wrap">
-            <!-- <iframe src="https://gozo.st/?game=tottenham-hotspur-vs-newcastle-united"
-    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen></iframe> -->
-            <iframe src="https://unxer123.gozo.st/games/tottenham-hotspur-vs-newcastle-united/" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture; fullscreen" title="Real Madrid vs Leganes Stream"></iframe>
-          </div>
-        </div>
-      </section>
+  <iframe
+    src="https://gozo.st/"
+    allowfullscreen>
+  </iframe>
 
-      <div class="footer">
-        <div><strong>Now Playing:</strong> Real Madrid vs Leganes</div>
-        <div>Credits: Rupinder</div>
-      </div>
-    </main>
-  </div>
 </body>
 </html>
